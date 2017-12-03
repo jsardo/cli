@@ -5,10 +5,10 @@ int rm_main(char *buf)
 {
     char **args, flags[5];
     int pflag = 0, vflag = 0, rflag = 0, hflag = 0, i = 0;
-        
+
     args = get_args(buf, 2);
     get_flags(buf, flags);
-    
+
     if (flags[0] != '\0') {
         do {
             switch (flags[i])
@@ -45,6 +45,7 @@ int rm_main(char *buf)
     for (i = 0; i < _argc; ++i) {
         rm(args[i], vflag, pflag, rflag);
     }
+    free_args(args);
     return 0;
 }
 
@@ -94,6 +95,7 @@ ls_usage:
     } else
         ls(args[0], aflag, iflag, rflag);
 
+    free_args(args);
     return 0;
 }
 
@@ -101,7 +103,7 @@ int mkdir_main(char *buf)
 {
     char **args, flags[5];
     int vflag = 0, hflag = 0, i = 0;
-    
+
     args = get_args(buf, 5);
     get_flags(buf, flags);
 
@@ -132,10 +134,11 @@ mkdir_usage:
        goto mkdir_usage;
        return 1;
    } else {
-       for (i = 0; i < _argc; ++i) 
+       for (i = 0; i < _argc; ++i)
            makedir(args[i], vflag);
    }
 
+    free_args(args);
    return 0;
 }
 
@@ -178,6 +181,7 @@ cat_usage:
     } else
         cat(args[0], nflag);
 
+    free_args(args);
     return 0;
 }
 
@@ -199,6 +203,13 @@ int cd_main(char *buf)
     else
         cd(args[0]);
 
+    free_args(args);
     return 0;
 }
-            
+
+void free_args(char **args) {
+    for (int i = 0; i < _argc; i++) {
+        free(args[i]);
+    }
+    free(args);
+}
