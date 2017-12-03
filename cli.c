@@ -101,6 +101,8 @@ int cat(const char *name, int nflag)
     if (c != '\n')
         putchar('\n');
 
+    fclose(fp);
+
     return 0;
 }
 
