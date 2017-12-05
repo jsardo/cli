@@ -133,7 +133,6 @@ mkdir_usage:
    if (_argc == 0) {
        printf("mkdir: no arguments given\n\n");
        goto mkdir_usage;
-       return 1;
    } else {
        for (i = 0; i < _argc; ++i)
            makedir(args[i], vflag);
