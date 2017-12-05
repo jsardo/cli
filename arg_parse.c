@@ -13,7 +13,7 @@ int get_argc(char *s)
             sp++;
         if (*sp == '\0')
             return count;
-        else 
+        else
             count++;
         while (!isspace(*sp) && *sp != '\0') 
             sp++;
@@ -33,7 +33,7 @@ char **get_args(char *s, int index)
 {
     char **args, arg[BUFSIZE], *argp;
     int i;
-    args = (char **) malloc (BUFSIZ);    
+    args = (char **) malloc (BUFSIZE);
 
     s += index;
     _argc = get_argc(s);
@@ -48,7 +48,7 @@ top:
             _argc--;
             goto top;
         }
-        while (!isspace(*s) || *s == '\0') 
+        while (!isspace(*s) && *s != '\0')
             *argp++ = *s++;
 
         *argp = '\0';
