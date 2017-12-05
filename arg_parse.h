@@ -6,6 +6,6 @@
 int get_argc(char *s);
 char *skip_flag(char *s);
 char **get_args(char *s, int index);
-char *get_flags(char *buf, char *flags);
+char *get_flags(char *buf);
 
 #endif

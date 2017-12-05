@@ -58,8 +58,9 @@ top:
     return args;
 }
 
-char *get_flags(char *buf, char *flags)
+char *get_flags(char *buf)
 {
+    char* flags = (char *) malloc(BUFSIZE);
     while (*buf != '\0') {
         if (*buf == '-') {
             buf++;
