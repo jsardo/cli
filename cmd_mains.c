@@ -4,11 +4,11 @@
 
 int rm_main(char *buf)
 {
-    char **args, *flags;
+    char **args;
     int pflag = 0, vflag = 0, rflag = 0, hflag = 0, i = 0;
 
     args = get_args(buf, 2);
-    flags = get_flags(buf);
+    char* flags = get_flags(buf);
 
     if (flags[0] != '\0') {
         do {
@@ -46,7 +46,9 @@ int rm_main(char *buf)
     for (i = 0; i < _argc; ++i) {
         rm(args[i], vflag, pflag, rflag);
     }
+
     free_args(args);
+    free_flags(flags);
     return 0;
 }
 
@@ -56,7 +58,7 @@ int ls_main(char *buf)
     int aflag = 0, iflag = 0, rflag = 0, hflag = 0, i = 0;
 
     args = get_args(buf, 2);
-    flags = get_flags(buf);
+    char* flags = get_flags(buf);
 
     if (flags[0] != '\0') {
         do {
@@ -97,6 +99,7 @@ ls_usage:
         ls(args[0], aflag, iflag, rflag);
 
     free_args(args);
+    free_flags(flags);
     return 0;
 }
 
@@ -106,7 +109,7 @@ int mkdir_main(char *buf)
     int vflag = 0, hflag = 0, i = 0;
 
     args = get_args(buf, 5);
-    flags = get_flags(buf, flags);
+    char* flags = get_flags(buf);
 
    if (flags[0] != '\0') {
        do {
@@ -138,7 +141,8 @@ mkdir_usage:
            makedir(args[i], vflag);
    }
 
-    free_args(args);
+   free_args(args);
+   free_flags(flags);
    return 0;
 }
 
@@ -148,7 +152,7 @@ int cat_main(char *buf)
     int nflag = 0, hflag = 0, i = 0;
 
     args = get_args(buf, 3);
-    flags = get_flags(buf, flags);
+    char* flags = get_flags(buf);
 
     if (flags[0] != '\0') {
         do {
@@ -182,6 +186,7 @@ cat_usage:
         cat(args[0], nflag);
 
     free_args(args);
+    free_flags(flags);
     return 0;
 }
 
