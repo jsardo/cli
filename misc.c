@@ -39,7 +39,6 @@ void usage(void)
            "cd\tchange working directory.\n\n"
            "appending \" -h\" to most commands will give\n"
            "additional info regarding that command\n\n");
-    exit(0);
 }
 
 char *strdup(const char *s)
