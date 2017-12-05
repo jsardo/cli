@@ -11,5 +11,4 @@ int cat(const char *name, int nflag);
 int cat_main(char *buf);
 int cd(const char *name);
 int cd_main(char *buf);
-void free_args(char **args);
 #endif
