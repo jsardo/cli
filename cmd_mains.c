@@ -1,5 +1,6 @@
 #include "misc.h"
 #include "cmd_mains.h"
+#include "arg_parse.h"
 
 int rm_main(char *buf)
 {
@@ -205,11 +206,4 @@ int cd_main(char *buf)
 
     free_args(args);
     return 0;
-}
-
-void free_args(char **args) {
-    for (int i = 0; i < _argc; i++) {
-        free(args[i]);
-    }
-    free(args);
 }

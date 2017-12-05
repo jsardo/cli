@@ -71,3 +71,14 @@ char *get_flags(char *buf, char *flags)
     *flags = '\0';
     return flags;
 }
+
+void free_args(char **args) {
+    for (int i = 0; i < _argc; i++) {
+        free(args[i]);
+    }
+    free(args);
+}
+
+void free_flags(char *flags) {
+    free(flags);
+}
