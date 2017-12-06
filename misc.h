@@ -29,7 +29,7 @@ void usage(void);
 int get_argc(char *s);
 char **get_args(char *s, int index);
 char *skip_flags(char *s);
-char *get_flags(char *buf, char *flags);
+char *get_flags(char *buf);
 bool prompt(char *fmt, ...);
 
 #endif

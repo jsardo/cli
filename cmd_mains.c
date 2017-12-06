@@ -1,14 +1,15 @@
 #include "misc.h"
 #include "cmd_mains.h"
+#include "arg_parse.h"
 
 int rm_main(char *buf)
 {
-    char **args, flags[5];
+    char **args;
     int pflag = 0, vflag = 0, rflag = 0, hflag = 0, i = 0;
-        
+
     args = get_args(buf, 2);
-    get_flags(buf, flags);
-    
+    char* flags = get_flags(buf);
+
     if (flags[0] != '\0') {
         do {
             switch (flags[i])
@@ -45,16 +46,19 @@ int rm_main(char *buf)
     for (i = 0; i < _argc; ++i) {
         rm(args[i], vflag, pflag, rflag);
     }
+
+    free_args(args);
+    free_flags(flags);
     return 0;
 }
 
 int ls_main(char *buf)
 {
-    char **args, flags[4];
+    char **args;
     int aflag = 0, iflag = 0, rflag = 0, hflag = 0, i = 0;
 
     args = get_args(buf, 2);
-    get_flags(buf, flags);
+    char* flags = get_flags(buf);
 
     if (flags[0] != '\0') {
         do {
@@ -94,16 +98,18 @@ ls_usage:
     } else
         ls(args[0], aflag, iflag, rflag);
 
+    free_args(args);
+    free_flags(flags);
     return 0;
 }
 
 int mkdir_main(char *buf)
 {
-    char **args, flags[5];
+    char **args;
     int vflag = 0, hflag = 0, i = 0;
-    
+
     args = get_args(buf, 5);
-    get_flags(buf, flags);
+    char* flags = get_flags(buf);
 
    if (flags[0] != '\0') {
        do {
@@ -130,22 +136,23 @@ mkdir_usage:
    if (_argc == 0) {
        printf("mkdir: no arguments given\n\n");
        goto mkdir_usage;
-       return 1;
    } else {
-       for (i = 0; i < _argc; ++i) 
+       for (i = 0; i < _argc; ++i)
            makedir(args[i], vflag);
    }
 
+   free_args(args);
+   free_flags(flags);
    return 0;
 }
 
 int cat_main(char *buf)
 {
-    char **args, flags[5];
+    char **args;
     int nflag = 0, hflag = 0, i = 0;
 
     args = get_args(buf, 3);
-    get_flags(buf, flags);
+    char* flags = get_flags(buf);
 
     if (flags[0] != '\0') {
         do {
@@ -178,6 +185,8 @@ cat_usage:
     } else
         cat(args[0], nflag);
 
+    free_args(args);
+    free_flags(flags);
     return 0;
 }
 
@@ -199,6 +208,6 @@ int cd_main(char *buf)
     else
         cd(args[0]);
 
+    free_args(args);
     return 0;
 }
-            

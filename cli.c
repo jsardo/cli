@@ -101,6 +101,8 @@ int cat(const char *name, int nflag)
     if (c != '\n')
         putchar('\n');
 
+    fclose(fp);
+
     return 0;
 }
 
@@ -172,7 +174,8 @@ int main(void)
         getcwd(cwd, BUFSIZE);
         printf("cli:%s%% ", (cwd == NULL) ? "" : cwd);
         
-        gets(buf);
+        fgets(buf, BUFSIZE, stdin);
+
         if (strlen(buf) == 0)   
             continue;
         if (strncmp(buf, "rm", 2) == 0 && !isalnum(buf[2]))
@@ -194,7 +197,7 @@ int main(void)
         else
             printf("cli: not a valid command.\n"
                    "type 'help' for a list of options\n\n");
-    } while (strcmp(buf, "exit") != 0);
+    } while (strcmp(buf, "exit\n") != 0);
 
     return 0;
 } 
